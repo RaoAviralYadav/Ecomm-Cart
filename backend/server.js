@@ -111,6 +111,21 @@ app.post('/api/cart', (req, res) => {
   });
 });
 
+// DELETE /api/cart/:id - Remove item from cart
+app.delete('/api/cart/:id', (req, res) => {
+  const { id } = req.params;
+  
+  db.run('DELETE FROM cart WHERE id = ?', [id], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Cart item not found' });
+    }
+    res.json({ message: 'Item removed from cart', id });
+  });
+});
+
 
 
 const PORT = process.env.PORT || 5000;
