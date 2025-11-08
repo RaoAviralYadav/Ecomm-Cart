@@ -146,7 +146,6 @@ app.put('/api/cart/:id', (req, res) => {
   });
 });
 
-
 // POST /api/checkout - Mock checkout
 app.post('/api/checkout', (req, res) => {
   const { cartItems, name, email } = req.body;
@@ -183,7 +182,6 @@ app.post('/api/checkout', (req, res) => {
     }))
   });
 });
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
