@@ -126,6 +126,27 @@ app.delete('/api/cart/:id', (req, res) => {
   });
 });
 
+// PUT /api/cart/:id - Update cart item quantity
+app.put('/api/cart/:id', (req, res) => {
+  const { id } = req.params;
+  const { quantity } = req.body;
+  
+  if (!quantity || quantity < 1) {
+    return res.status(400).json({ error: 'Invalid quantity' });
+  }
+
+  db.run('UPDATE cart SET quantity = ? WHERE id = ?', [quantity, id], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Cart item not found' });
+    }
+    res.json({ message: 'Quantity updated', id, quantity });
+  });
+});
+
+
 
 
 const PORT = process.env.PORT || 5000;
