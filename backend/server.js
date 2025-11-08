@@ -147,6 +147,42 @@ app.put('/api/cart/:id', (req, res) => {
 });
 
 
+// POST /api/checkout - Mock checkout
+app.post('/api/checkout', (req, res) => {
+  const { cartItems, name, email } = req.body;
+  
+  if (!cartItems || cartItems.length === 0) {
+    return res.status(400).json({ error: 'Cart is empty' });
+  }
+  
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Name and email are required' });
+  }
+
+  const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
+  const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
+  
+  // Clear cart after checkout
+  db.run('DELETE FROM cart', (err) => {
+    if (err) {
+      console.error('Error clearing cart:', err);
+    }
+  });
+
+  res.json({
+    success: true,
+    orderId,
+    total: parseFloat(total.toFixed(2)),
+    timestamp: new Date().toISOString(),
+    customerName: name,
+    customerEmail: email,
+    items: cartItems.map(item => ({
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price
+    }))
+  });
+});
 
 
 const PORT = process.env.PORT || 5000;
