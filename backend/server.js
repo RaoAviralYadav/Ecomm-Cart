@@ -73,6 +73,45 @@ app.get('/api/cart', (req, res) => {
   });
 });
 
+// POST /api/cart - Add item to cart
+app.post('/api/cart', (req, res) => {
+  const { productId, quantity } = req.body;
+  
+  if (!productId || !quantity || quantity < 1) {
+    return res.status(400).json({ error: 'Invalid productId or quantity' });
+  }
+
+  // Check if product exists
+  db.get('SELECT * FROM products WHERE id = ?', [productId], (err, product) => {
+    if (err || !product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Check if item already in cart
+    db.get('SELECT * FROM cart WHERE productId = ?', [productId], (err, existing) => {
+      if (existing) {
+        // Update quantity
+        const newQty = existing.quantity + quantity;
+        db.run('UPDATE cart SET quantity = ? WHERE productId = ?', [newQty, productId], (err) => {
+          if (err) {
+            return res.status(500).json({ error: err.message });
+          }
+          res.json({ message: 'Cart updated', productId, quantity: newQty });
+        });
+      } else {
+        // Insert new item
+        db.run('INSERT INTO cart (productId, quantity) VALUES (?, ?)', [productId, quantity], function(err) {
+          if (err) {
+            return res.status(500).json({ error: err.message });
+          }
+          res.json({ message: 'Item added to cart', id: this.lastID, productId, quantity });
+        });
+      }
+    });
+  });
+});
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
