@@ -14,14 +14,14 @@
 
 vibe-commerce/
 ├── backend/
-│   ├── server.js
-│   └── package.json
+│ ├── server.js
+│ └── package.json
 └── frontend/
-    ├── src/
-    │   ├── App.jsx
-    │   ├── App.css
-    │   └── index.js
-    └── package.json
+├── src/
+│ ├── App.jsx
+│ ├── App.css
+│ └── index.js
+└── package.json
 
 
 
