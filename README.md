@@ -11,7 +11,7 @@
 - SQLite Persistence  
 
 ## 📁 Project Structure
-
+``` bash
 vibe-commerce/
 ├── backend/
 │ ├── server.js
@@ -22,7 +22,7 @@ vibe-commerce/
 │ ├── App.css
 │ └── index.js
 └── package.json
-
+```
 
 
 ## 🛠️ Setup Instructions
