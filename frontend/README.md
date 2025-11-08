@@ -1,70 +1,218 @@
-# Getting Started with Create React App
+# Vibe Commerce – E-Commerce Cart Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Features
+- Product Catalog: 8 mock products with images and descriptions  
+- Shopping Cart: Add, remove, update quantities  
+- Real-time Totals  
+- Checkout Flow  
+- Mock Receipt with order ID and timestamp  
+- Responsive Design  
+- Error Handling  
+- SQLite Persistence  
 
-## Available Scripts
+## 📁 Project Structure
 
-In the project directory, you can run:
+vibe-commerce/
+├── backend/
+│   ├── server.js
+│   └── package.json
+└── frontend/
+    ├── src/
+    │   ├── App.jsx
+    │   ├── App.css
+    │   └── index.js
+    └── package.json
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Setup Instructions
 
-### `npm test`
+### Prerequisites
+- Node.js v14+
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend Setup
+``` bash
+mkdir backend
+cd backend
+npm install
+npm start
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Server runs on http://localhost:5000
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Frontend Setup
 
-### `npm run eject`
+Create React app:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+``` bash
+npx create-react-app frontend
+cd frontend
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Frontend runs on http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Replace App.jsx, App.css, index.js, and update package.json as per artifacts.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Update package.json 
+Install and start:
 
-## Learn More
+``` bash
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm install
+npm start
+```
+Frontend runs on http://localhost:3000
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 🎯 API Endpoints
+## Products
+``` bash
+GET /api/products - Fetch all products
+```
+## Cart
+``` bash
+GET /api/cart - Get cart items and total
+POST /api/cart - Add item to cart
 
-### Code Splitting
+json  { "productId": 1, "quantity": 1 }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+PUT /api/cart/:id - Update item quantity
 
-### Analyzing the Bundle Size
+json  { "quantity": 2 }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+DELETE /api/cart/:id - Remove item from cart
+```
+## Checkout
+``` bash
+POST /api/checkout - Complete purchase
 
-### Making a Progressive Web App
+json  {
+    "cartItems": [...],
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+## 🧪 Testing Steps
 
-### Advanced Configuration
+- Load 8 products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Add to cart
 
-### Deployment
+- Update quantities
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Remove items
 
-### `npm run build` fails to minify
+- Empty cart
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Checkout
+
+- Validate receipt
+
+- Confirm cart clears
+
+# 📸 Screenshots
+
+## Products Page
+
+## Shopping Cart
+
+## Checkout
+
+## Order Confirmation
+
+# 🎥 Demo Video
+Watch the full demo: (click here)[clickhere]
+
+## The video demonstrates:
+
+- Browsing products catalog
+- Adding items to cart
+- Updating quantities and removing items
+- Checkout process
+- Order confirmation
+
+# 💡 Implementation Details
+## Backend
+
+Express.js: RESTful API server
+SQLite: In-memory database for quick setup
+CORS: Enabled for frontend communication
+Mock Data: 8 products pre-populated on startup
+
+## Frontend
+
+React Hooks: useState and useEffect for state management
+Fetch API: Async calls to backend
+Conditional Rendering: Switch between views (products/cart/checkout)
+Form Validation: Required fields for checkout
+Responsive CSS: Flexbox and Grid layout
+
+# Features Implemented
+- ✅ All required API endpoints
+- ✅ Product catalog display
+- ✅ Add/remove cart functionality
+- ✅ Quantity updates
+- ✅ Real-time total calculation
+- ✅ Checkout form with validation
+- ✅ Mock receipt generation
+- ✅ Responsive design
+- ✅ Error handling
+- ✅ Database persistence
+
+## 🎨 Bonus Features
+
+- ✅ Database persistence with SQLite
+- ✅ Comprehensive error handling
+- ✅ Professional UI/UX design
+- ✅ Cart quantity updates
+- ✅ Detailed order receipts with timestamps
+
+# 🚀 Deployment to GitHub
+
+## Initialize git in project root:
+
+``` bash
+git init
+git add .
+git commit -m "Initial commit: Full-stack e-commerce cart"
+```
+
+## Create GitHub repository and push:
+
+``` bash
+git remote add origin <your-repo-url>
+git push -u origin main
+``` 
+
+## Ensure README.md includes:
+
+- Setup instructions
+- API documentation
+- Screenshots description
+- Demo video link
+
+
+
+# 📝 Technologies Used
+## Frontend:
+
+- React 18
+- CSS3 (Flexbox, Grid)
+- Fetch API
+
+## Backend:
+
+- Node.js
+- Express.js
+- SQLite3
+- CORS
+
+## 👤 Author
+# Aviral Yadav
+Vibe Commerce
+
+
