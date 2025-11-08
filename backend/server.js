@@ -54,6 +54,24 @@ app.get('/api/products', (req, res) => {
   });
 });
 
+// GET /api/cart - Get cart items with total
+app.get('/api/cart', (req, res) => {
+  const query = `
+    SELECT c.id, c.productId, c.quantity, p.name, p.price, p.image,
+           (c.quantity * p.price) as subtotal
+    FROM cart c
+    JOIN products p ON c.productId = p.id
+  `;
+  
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    const total = rows.reduce((sum, item) => sum + item.subtotal, 0);
+    res.json({ items: rows, total: parseFloat(total.toFixed(2)) });
+  });
+});
 
 
 const PORT = process.env.PORT || 5000;
