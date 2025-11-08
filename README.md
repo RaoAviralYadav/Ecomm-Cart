@@ -129,7 +129,7 @@ json  {
 ![](https://github.com/RaoAviralYadav/Ecomm-Cart/blob/54deeab689ac9204221e871899ce7ba05c75027d/frontend/public/OrderConfirmation.png)
 
 # 🎥 Demo Video
-Watch the full demo: (click here)[clickhere]
+Watch the full demo: [clickhere](https://youtu.be/0HtTt8tZfTQ)
 
 ## The video demonstrates:
 
